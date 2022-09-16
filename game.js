@@ -1,10 +1,25 @@
 // Array of Colors
 var buttonColors = ["red", "blue", "green", "yellow"];
-
 // Array of the Current Game Pattern
 var gamePattern = [];
 // Array of User Clicked Patter
 var userClickedPattern = [];
+// Check to see if a key has been pressed to start the game
+var gameStart = false;
+// Game Play Level
+var level = 0;
+
+// Detect if a key has been pressed to start the game
+$(document).keypress(function() {
+    if (!gameStart) {
+        // Change gameStart to true
+        gameStart = true;
+        // Change heading to Level 0
+        $("h1").text("Level 0");
+
+        nextSequence();
+    }
+})
 
 // Detect if any buttons have been clicked
 $("div.btn").on("click", function(e) {
@@ -35,6 +50,10 @@ function nextSequence() {
 
     // Animate Press
     animatePress(randomChosenColor);
+
+    // Increase Level and display in heading
+    level++;
+    $("h1").text(`Level ${level}`);
 }
 
 // Play Sound Function
