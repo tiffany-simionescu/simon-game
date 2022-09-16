@@ -14,6 +14,8 @@ $("div.btn").on("click", function(e) {
     userClickedPattern.push(userChosenColor);
     // Play sound of user chosen color
     playSound(userChosenColor);
+    // Animate Pressed Color
+    animatePress(userChosenColor);
 });
 
 // Random Number Generator Function
@@ -30,6 +32,9 @@ function nextSequence() {
 
     // Play sound for color
     playSound(randomChosenColor);
+
+    // Animate Press
+    animatePress(randomChosenColor);
 }
 
 // Play Sound Function
@@ -37,4 +42,15 @@ function playSound(name) {
     // Color MP3 to play
     var audio = new Audio(`sounds/${name}.mp3`);
     audio.play();
+}
+
+// Animation function
+function animatePress(currentColor) {
+    // set timeout for pressed class
+    setTimeout(function() {
+        $(`#${currentColor}`).toggleClass("pressed");
+        setTimeout(function() {
+            $(`#${currentColor}`).toggleClass("pressed");
+        }, 100)
+    }, 100);
 }
