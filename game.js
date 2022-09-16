@@ -12,6 +12,8 @@ $("div.btn").on("click", function(e) {
     var userChosenColor = e.target.id;
     // Add user's chosen color to the userClickedPattern array
     userClickedPattern.push(userChosenColor);
+    // Play sound of user chosen color
+    playSound(userChosenColor);
 });
 
 // Random Number Generator Function
@@ -26,7 +28,13 @@ function nextSequence() {
     // Flash Random Chosen Color
     $(`#${randomChosenColor}`).fadeIn(100).fadeOut(100).fadeIn(100);
 
+    // Play sound for color
+    playSound(randomChosenColor);
+}
+
+// Play Sound Function
+function playSound(name) {
     // Color MP3 to play
-    var audio = new Audio(`/sounds/${randomChosenColor}.mp3`);
+    var audio = new Audio(`sounds/${name}.mp3`);
     audio.play();
 }
