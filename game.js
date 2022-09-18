@@ -9,8 +9,8 @@ var gameStart = false;
 // Game Play Level
 var level = 0;
 
-// Detect if a key has been pressed to start the game
-$(document).keypress(function() {
+// Detect if a key has been pressed to start the game or add to userClickedPattern
+$(document).keypress(function(e) {
     if (!gameStart) {
         // Change gameStart to true
         gameStart = true;
@@ -18,6 +18,9 @@ $(document).keypress(function() {
         $("h1").text("Level 0");
 
         nextSequence();
+    } else if (gameStart) {
+        keyPressButtonCheck(e.key);
+        console.log("Key Pressed = " + e.key);
     }
 })
 
@@ -117,4 +120,37 @@ function animatePress(currentColor) {
             $(`#${currentColor}`).toggleClass("pressed");
         }, 100)
     }, 100);
+}
+
+// Keypress function
+function keyPressButtonCheck(key) {
+    switch (key) {
+        case "q":
+            userClickedPattern.push("green");
+            checkAnswer(userClickedPattern.length-1);
+            playSound("green");
+            animatePress("green");
+            break;
+        case "w":
+            userClickedPattern.push("red");
+            checkAnswer(userClickedPattern.length-1);
+            playSound("red");
+            animatePress("red");
+            break;
+        case "a":
+            userClickedPattern.push("yellow");
+            checkAnswer(userClickedPattern.length-1);
+            playSound("yellow");
+            animatePress("yellow");
+            break;
+        case "s":
+            userClickedPattern.push("blue");
+            checkAnswer(userClickedPattern.length-1);
+            playSound("blue");
+            animatePress("blue");
+            break;
+        default:
+            $("h1").text("Please Select Q, W, A, oe S");
+            playSound("wrong");
+    }
 }
