@@ -71,6 +71,19 @@ function checkAnswer(currentLevel) {
             }, 1000)
         }
     } else {
+        // Play wrong sound
+        playSound("wrong");
+        // Change background color
+        setTimeout(function() {
+            $("body").toggleClass("game-over");
+            setTimeout(function() {
+                $("body").toggleClass("game-over");
+            }, 200)
+        }, 200);
+
+        // Change the h1 for wrong answer
+        $("h1").text("Game Over, Press Any Key to Restart");
+        
         console.log("Wrong");
     }
 }
