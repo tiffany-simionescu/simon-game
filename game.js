@@ -1,11 +1,15 @@
 // Array of Colors
 var buttonColors = ["red", "blue", "green", "yellow"];
+
 // Array of the Current Game Pattern
 var gamePattern = [];
+
 // Array of User Clicked Patter
 var userClickedPattern = [];
+
 // Check to see if a key has been pressed to start the game
 var gameStart = false;
+
 // Game Play Level
 var level = 0;
 
@@ -27,12 +31,16 @@ $(document).keypress(function(e) {
 $("div.btn").on("click", function(e) {
     // User's chosen color
     var userChosenColor = e.target.id;
+
     // Add user's chosen color to the userClickedPattern array
     userClickedPattern.push(userChosenColor);
+
     // Check User's last answer with gamePattern
     checkAnswer(userClickedPattern.length-1);
+
     // Play sound of user chosen color
     playSound(userChosenColor);
+
     // Animate Pressed Color
     animatePress(userChosenColor);
 });
@@ -41,10 +49,13 @@ $("div.btn").on("click", function(e) {
 function nextSequence() {
     // Clear all past User moves
     userClickedPattern = [];
+
     // Generate Random Number between 0 and 3
     var randomNumber = Math.floor(Math.random() * 4);
+
     // Random Selected Color from buttonColors
     var randomChosenColor = buttonColors[randomNumber];
+
     // Add random chosen color to gamePattern
     gamePattern.push(randomChosenColor);
 
@@ -65,6 +76,7 @@ function nextSequence() {
 // Check Answer Function
 function checkAnswer(currentLevel) {
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+
         // CHeck if the sequence is finished
         if (userClickedPattern.length === gamePattern.length) {
             setTimeout(function() {
@@ -74,6 +86,7 @@ function checkAnswer(currentLevel) {
     } else {
         // Play wrong sound
         playSound("wrong");
+
         // Change background color
         setTimeout(function() {
             $("body").toggleClass("game-over");
@@ -106,7 +119,7 @@ function keyPressButtonCheck(key) {
             keyPressColor("blue");
             break;
         default:
-            $("h1").text("Please Select Q, W, A, oe S");
+            $("h1").text("Please Select Q, W, A, or S");
             playSound("wrong");
     }
 }
@@ -115,8 +128,10 @@ function keyPressButtonCheck(key) {
 function startOver() {
     // Reset level
     level = 0;
+
     // Reset Game Pattern
     gamePattern = [];
+
     // Reset gameStart
     gameStart = false;
 }
@@ -143,10 +158,13 @@ function animatePress(currentColor) {
 function keyPressColor(color) {
     // add color to the userClickedPattern Array
     userClickedPattern.push(color);
+
     // Check Answer
     checkAnswer(userClickedPattern.length-1);
+
     // Play sound
     playSound(color);
+
     // Animate button
     animatePress(color);
 }
