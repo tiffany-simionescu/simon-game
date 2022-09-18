@@ -27,6 +27,8 @@ $("div.btn").on("click", function(e) {
     var userChosenColor = e.target.id;
     // Add user's chosen color to the userClickedPattern array
     userClickedPattern.push(userChosenColor);
+    // Check User's last answer with gamePattern
+    checkAnswer(userClickedPattern.length-1);
     // Play sound of user chosen color
     playSound(userChosenColor);
     // Animate Pressed Color
@@ -35,6 +37,8 @@ $("div.btn").on("click", function(e) {
 
 // Random Number Generator Function
 function nextSequence() {
+    // Clear all past User moves
+    userClickedPattern = [];
     // Generate Random Number between 0 and 3
     var randomNumber = Math.floor(Math.random() * 4);
     // Random Selected Color from buttonColors
@@ -54,6 +58,21 @@ function nextSequence() {
     // Increase Level and display in heading
     level++;
     $("h1").text(`Level ${level}`);
+}
+
+// Check Answer Function
+function checkAnswer(currentLevel) {
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+        console.log("Success");
+        // CHeck if the sequence is finished
+        if (userClickedPattern.length === gamePattern.length) {
+            setTimeout(function() {
+                nextSequence();
+            }, 1000)
+        }
+    } else {
+        console.log("Wrong");
+    }
 }
 
 // Play Sound Function
