@@ -6,7 +6,8 @@ body {
 
 #level-title {
   font-size: 3rem;
-  margin: 5%;
+  margin-top: 5%;
+  margin-bottom: 1%;
   color: #fef2bf;
 }
 
@@ -33,10 +34,6 @@ body {
 .letter-space {
     padding: 0.25rem;
 }
-
-/* .btn-letter {
-  font-size: 9rem;
-} */
 
 .game-over {
   background-color: red;
