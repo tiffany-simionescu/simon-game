@@ -20,7 +20,6 @@ $(document).keypress(function(e) {
         nextSequence();
     } else if (gameStart) {
         keyPressButtonCheck(e.key);
-        console.log("Key Pressed = " + e.key);
     }
 })
 
@@ -66,7 +65,6 @@ function nextSequence() {
 // Check Answer Function
 function checkAnswer(currentLevel) {
     if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-        console.log("Success");
         // CHeck if the sequence is finished
         if (userClickedPattern.length === gamePattern.length) {
             setTimeout(function() {
@@ -89,8 +87,27 @@ function checkAnswer(currentLevel) {
 
         // Call startOver function for wrong answer
         startOver();
+    }
+}
 
-        console.log("Wrong");
+// Keypress switch function
+function keyPressButtonCheck(key) {
+    switch (key) {
+        case "q":
+            keyPressColor("green");
+            break;
+        case "w":
+            keyPressColor("red")
+            break;
+        case "a":
+            keyPressColor("yellow");
+            break;
+        case "s":
+            keyPressColor("blue");
+            break;
+        default:
+            $("h1").text("Please Select Q, W, A, oe S");
+            playSound("wrong");
     }
 }
 
@@ -122,35 +139,14 @@ function animatePress(currentColor) {
     }, 100);
 }
 
-// Keypress function
-function keyPressButtonCheck(key) {
-    switch (key) {
-        case "q":
-            userClickedPattern.push("green");
-            checkAnswer(userClickedPattern.length-1);
-            playSound("green");
-            animatePress("green");
-            break;
-        case "w":
-            userClickedPattern.push("red");
-            checkAnswer(userClickedPattern.length-1);
-            playSound("red");
-            animatePress("red");
-            break;
-        case "a":
-            userClickedPattern.push("yellow");
-            checkAnswer(userClickedPattern.length-1);
-            playSound("yellow");
-            animatePress("yellow");
-            break;
-        case "s":
-            userClickedPattern.push("blue");
-            checkAnswer(userClickedPattern.length-1);
-            playSound("blue");
-            animatePress("blue");
-            break;
-        default:
-            $("h1").text("Please Select Q, W, A, oe S");
-            playSound("wrong");
-    }
+// keypress color function
+function keyPressColor(color) {
+    // add color to the userClickedPattern Array
+    userClickedPattern.push(color);
+    // Check Answer
+    checkAnswer(userClickedPattern.length-1);
+    // Play sound
+    playSound(color);
+    // Animate button
+    animatePress(color);
 }
