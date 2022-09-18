@@ -83,9 +83,22 @@ function checkAnswer(currentLevel) {
 
         // Change the h1 for wrong answer
         $("h1").text("Game Over, Press Any Key to Restart");
-        
+
+        // Call startOver function for wrong answer
+        startOver();
+
         console.log("Wrong");
     }
+}
+
+// Start Over function
+function startOver() {
+    // Reset level
+    level = 0;
+    // Reset Game Pattern
+    gamePattern = [];
+    // Reset gameStart
+    gameStart = false;
 }
 
 // Play Sound Function
