@@ -4,7 +4,7 @@ Created using HTML, CSS, and JavaScript
 
 The user presses any key to begin the game, which is tracked by a boolean. 
 
-The program generates a random number from 0 to 3. That number is then compared to the placement index of a list of colors in an array. That index value is then added to the sequence of a seperate array to keep track of the program generated pattern. 
+The program generates a random number from 0 to 3. That number is then compared to the placement index of a list of colors in an array. That index value is then added to the sequence of a separate array to keep track of the program generated pattern. 
 
 After viewing and hearing the program generated pattern, the user can either click the four buttons, or press keys Q, W, A, or S to select the correct color pattern. If the user selects a key that isn't Q, W, A, or S, the user will be asked to select one of the appropriate keys. The user's chosen color is then added to a user generated pattern array, which is then compared to the program generated pattern array. 
 
