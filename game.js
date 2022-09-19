@@ -59,18 +59,38 @@ function nextSequence() {
     // Add random chosen color to gamePattern
     gamePattern.push(randomChosenColor);
 
-    // Flash Random Chosen Color
-    $(`#${randomChosenColor}`).fadeIn(100).fadeOut(100).fadeIn(100);
+    // Go through each color of the gamePattern 
+    gamePattern.forEach((item, index) => {
+        setTimeout(() => {
+            // Animate flash
+            $(item).fadeIn(100).fadeOut(100).fadeIn(100);
 
-    // Play sound for color
-    playSound(randomChosenColor);
+            // play sound
+            playSound(item);
 
-    // Animate Press
-    animatePress(randomChosenColor);
+            // Animate press
+            animatePress(item);
+        }, index * 500);
+    })
 
-    // Increase Level and display in heading
+    // Increase Level and Display in heading
     level++;
     $("h1").text(`Level ${level}`);
+
+
+
+    // This code will only show the last chosen color of the array
+    // And not the sequence of colors
+    // -------------------------------
+    // Flash Random Chosen Color
+    // $(`#${randomChosenColor}`).fadeIn(100).fadeOut(100).fadeIn(100);
+
+    // Play sound for color
+    // playSound(randomChosenColor);
+
+    // Animate Press
+    // animatePress(randomChosenColor);
+    // --------------------------------
 }
 
 // Check Answer Function
